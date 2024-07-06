@@ -28,15 +28,16 @@ Avant d'utiliser ce package, vous devez générer des clés privées et publique
 
 1. **Encodez vos clés en Base64**:
    ```bash
-   cat private.pem | base64 | tr -d '\n' > private_base64.pem
-   cat public.pem | base64 | tr -d '\n' > public_base64.pem
+    base64 private.pem > private_key.base64
+    base64 public.pem > public_key.base64
+
    ```
 
 2. **Ajoutez les clés encodées à vos variables d'environnement**:
    Créez un fichier `.env` à la racine de votre projet et ajoutez-y les lignes suivantes:
    ```
-   PRIVATE_KEY=$(cat private_base64.pem)
-   PUBLIC_KEY=$(cat public_base64.pem)
+    PRIVATE_KEY=$(cat  private_key.base64) <!-- content of the file -->
+    PUBLIC_KEY=$(cat public_key.base64) <!-- content of the file -->
    ```
 
 ## Utilisation de jwt_tools
