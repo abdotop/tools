@@ -10,7 +10,7 @@ const (
 	uppercaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	lowercaseLetters = "abcdefghijklmnopqrstuvwxyz"
 	numbers          = "0123456789"
-	specialChars     = "!@#$%^&*()-_+=[]{}|;:,.<>/?"
+	specialChars     = "!@#$%&=?"
 )
 
 // GeneratePassword creates a random password with the specified length and complexity.
