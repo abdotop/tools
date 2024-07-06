@@ -6,7 +6,7 @@ Ce package fournit des fonctionnalités pour gérer JSON Web Tokens (JWT) en Go.
 
 Pour utiliser ce package, vous pouvez l'ajouter à votre projet Go en important le chemin du package dans votre code :
 
-   ```bash
+   ```go
    import "github.com/abdotop/tools/jwt"
    ```
 
@@ -84,5 +84,20 @@ Avant d'utiliser ce package, vous devez générer des clés privées et publique
   fmt.Println("Claims:", claims)
   ```
 
+### Gestion des erreurs
+
+Gérez les erreurs de manière asynchrone en utilisant un callback :
+
+```go
+k.OnError(func(e error) {
+ fmt.Println("Erreur détectée :", e)
+})
+```
+
 ## Conclusion
 Suivez ces étapes pour configurer et utiliser `jwt_tools` pour la gestion sécurisée des tokens JWT dans vos applications Go.
+
+
+## Licence
+
+Ce package est distribué sous la licence MIT. Veuillez consulter le fichier `LICENSE` pour plus de détails.
