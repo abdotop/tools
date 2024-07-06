@@ -44,7 +44,7 @@ Avant d'utiliser ce package, vous devez générer des clés privées et publique
 - **Initialisation**:
   Importez `jwt_tools` et créez une instance en spécifiant la durée de validité du token en heures.
   ```go
-  import "path/to/jwt"
+  import "github.com/abdotop/tools/jwt"
 
   func main() {
       jwtTool := jwt.New(24) // Token valide pour 24 heures
