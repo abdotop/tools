@@ -23,6 +23,10 @@ func New(db *gorm.DB) *Operator {
 	}
 }
 
+func (o *Operator) GetDb() *gorm.DB {
+	return o.db
+}
+
 func (o *Operator) OnError(callback func(error)) {
 	go func() {
 		for err := range o.errChan { // Correctly range over the channel
