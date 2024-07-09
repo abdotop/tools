@@ -10,18 +10,14 @@ const (
 )
 
 type CountryInfo struct {
-	reg       *regexp.Regexp
-	indicatif Indicatif
+	Reg       *regexp.Regexp
+	Indicatif Indicatif
 }
 
 var CountrysInfo = map[CountryCode]CountryInfo{
 	SN: {regexp.MustCompile(`^7[0678][0-9]{7}$`), "+221"},
 }
 
-func VerifyPhoneNumber(code CountryCode, phone string) (Indicatif, bool) {
-	info, ok := CountrysInfo[code]
-	if !ok {
-		return "", false
-	}
-	return info.indicatif, info.reg.MatchString(phone)
+func (info *CountryInfo) VerifyPhoneNumber(code CountryCode, phone string) bool {
+	return info.Reg.MatchString(phone)
 }
