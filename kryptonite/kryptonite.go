@@ -54,12 +54,10 @@ func (k *kryptonite) CompareHashAndPassword(hashedPassword, password string, sal
 	}
 	if len(hashedPassword) != len(newHash) {
 		err = errors.New("invalid hash length")
-		k.errChan <- err
 		return err
 	}
 	if subtle.ConstantTimeCompare([]byte(hashedPassword), []byte(newHash)) != 1 {
 		err = errors.New("password does not match")
-		k.errChan <- err
 		return err
 	}
 	return nil
