@@ -21,7 +21,7 @@ type jwt_tools struct {
 }
 
 // New crée une nouvelle instance de jwt_tools.
-func New(exp uint8) *jwt_tools {
+func New(exp uint16) *jwt_tools {
 	return &jwt_tools{
 		errChan: make(chan error),
 		exp:     time.Now().Add(time.Hour * time.Duration(exp)).Unix(),
