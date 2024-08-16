@@ -12,14 +12,14 @@ import (
 )
 
 // Kryptonite is a struct that contains the secret key and the hash function
-type kryptonite struct {
+type Kryptonite struct {
 	secretKey     string
 	hash_function func() hash.Hash
 	errChan       chan error // Channel to send errors
 }
 
 // New creates a new Kryptonite instance with the secret key and the hash function ex: sha256
-func New(secretKey string, h func() hash.Hash) (*kryptonite, error) {
+func New(secretKey string, h func() hash.Hash) (*Kryptonite, error) {
 	if len(secretKey) < 8 { // Minimum length check for the secret key
 		return nil, errors.New("secret key too short, must be at least 8 characters")
 	}
@@ -31,7 +31,7 @@ func New(secretKey string, h func() hash.Hash) (*kryptonite, error) {
 }
 
 // Hash Password With Secret now uses PBKDF2 for better security
-func (k *kryptonite) GenerateHash(password string, salt []byte) (string, error) {
+func (k *Kryptonite) GenerateHash(password string, salt []byte) (string, error) {
 	if len(salt) < 8 { // Ensuring that the salt is of adequate length
 		return "", errors.New("salt too short, must be at least 8 bytes")
 	}
@@ -47,7 +47,7 @@ func (k *kryptonite) GenerateHash(password string, salt []byte) (string, error) 
 	return hashedPassword, nil
 }
 
-func (k *kryptonite) CompareHashAndPassword(hashedPassword, password string, salt []byte) error {
+func (k *Kryptonite) CompareHashAndPassword(hashedPassword, password string, salt []byte) error {
 	newHash, err := k.GenerateHash(password, salt)
 	if err != nil {
 		return errors.New("failed to hash password: " + err.Error())
@@ -63,7 +63,7 @@ func (k *kryptonite) CompareHashAndPassword(hashedPassword, password string, sal
 	return nil
 }
 
-func (k *kryptonite) OnError(callback func(error)) {
+func (k *Kryptonite) OnError(callback func(error)) {
 	go func() {
 		for err := range k.errChan { // Correctly range over the channel
 			if err != nil {
