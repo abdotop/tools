@@ -23,7 +23,7 @@ func New(secretKey string, h func() hash.Hash) (*Kryptonite, error) {
 	if len(secretKey) < 8 { // Minimum length check for the secret key
 		return nil, errors.New("secret key too short, must be at least 8 characters")
 	}
-	return &kryptonite{
+	return &Kryptonite{
 		secretKey:     secretKey,
 		hash_function: h,
 		errChan:       make(chan error),
